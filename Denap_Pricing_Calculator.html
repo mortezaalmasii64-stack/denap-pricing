@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+
+<title>ماشین حساب قیمت گذاری دناپ</title>
+
+<style>
+
+body {
+    font-family: Tahoma, Arial;
+    background:#f5f5f5;
+    padding:30px;
+}
+
+.container {
+    background:white;
+    max-width:700px;
+    margin:auto;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ccc;
+}
+
+h1 {
+    text-align:center;
+}
+
+label {
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+input, select {
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+}
+
+.checkbox {
+    width:auto;
+}
+
+button {
+
+    margin-top:25px;
+    width:100%;
+    padding:15px;
+    background:#0066cc;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:18px;
+
+}
+
+.result {
+
+    margin-top:25px;
+    background:#eef7ee;
+    padding:20px;
+    border-radius:10px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+ماشین حساب قیمت گذاری دناپ
+</h1>
+
+
+<label>
+تعداد مدارس
+</label>
+
+<input id="schools" type="number" value="100">
+
+
+<label>
+میانگین دانش آموز هر مدرسه
+</label>
+
+<input id="students" type="number" value="150">
+
+
+
+<label>
+ماژول‌های فعال
+</label>
+
+<br>
+
+<input class="checkbox" id="school" type="checkbox" checked>
+سامانه مدیریت مدرسه
+
+<br>
+
+<input class="checkbox" id="finance" type="checkbox" checked>
+سامانه مالی
+
+<br>
+
+<input class="checkbox" id="online" type="checkbox" checked>
+کلاس آنلاین + ذخیره
+
+<br>
+
+<input class="checkbox" id="lms" type="checkbox" checked>
+تکلیف و محتوا
+
+
+
+<label>
+سطح پشتیبانی
+</label>
+
+
+<select id="support">
+
+<option value="0">
+پایه
+</option>
+
+<option value="250000000">
+استاندارد
+</option>
+
+<option value="500000000">
+ویژه
+</option>
+
+</select>
+
+
+
+<label>
+حاشیه سود (%)
+</label>
+
+<input id="profit" type="number" value="30">
+
+
+<button onclick="calculate()">
+محاسبه قیمت
+</button>
+
+
+
+<div class="result" id="result">
+
+نتیجه اینجا نمایش داده می‌شود
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+function calculate(){
+
+
+let schools =
+Number(document.getElementById("schools").value);
+
+
+let students =
+Number(document.getElementById("students").value);
+
+
+
+let totalStudents =
+schools * students;
+
+
+
+// هزینه پایه
+
+let cost = 300000000;
+
+
+// هزینه مدارس
+
+cost += schools * 3000000;
+
+
+// هزینه دانش آموز
+
+cost += totalStudents * 50000;
+
+
+
+// ماژول‌ها
+
+
+if(document.getElementById("school").checked)
+cost += 700000000;
+
+
+if(document.getElementById("finance").checked)
+cost += 300000000;
+
+
+if(document.getElementById("online").checked)
+cost += 250000000;
+
+
+if(document.getElementById("lms").checked)
+cost += 100000000;
+
+
+
+// پشتیبانی
+
+cost += Number(
+document.getElementById("support").value
+);
+
+
+
+// سود
+
+let profit =
+Number(document.getElementById("profit").value);
+
+
+
+let price =
+cost / (1-profit/100);
+
+
+
+document.getElementById("result").innerHTML =
+
+`
+<b>تعداد دانش آموز:</b>
+${totalStudents.toLocaleString()}
+<br><br>
+
+<b>هزینه تمام شده:</b>
+${cost.toLocaleString()}
+تومان
+
+<br><br>
+
+<b>قیمت پیشنهادی فروش:</b>
+${price.toLocaleString()}
+تومان
+
+<br><br>
+
+<b>قیمت هر مدرسه:</b>
+${(price/schools).toLocaleString()}
+تومان
+
+<br><br>
+
+<b>قیمت هر دانش آموز:</b>
+${(price/totalStudents).toLocaleString()}
+تومان
+
+`;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
