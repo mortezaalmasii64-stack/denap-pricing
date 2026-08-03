@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>ماشین حساب قیمت گذاری دناپ</title>
+
+<style>
+
+body {
+    font-family: Tahoma, Arial;
+    background:#f5f5f5;
+    padding:30px;
+}
+
+.container {
+
+    background:white;
+    max-width:900px;
+    margin:auto;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 15px #ccc;
+
+}
+
+
+h1 {
+
+    text-align:center;
+    color:#0066cc;
+
+}
+
+
+h2 {
+
+    color:#333;
+    border-bottom:1px solid #ddd;
+    padding-bottom:10px;
+
+}
+
+
+label {
+
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+
+}
+
+
+input, select {
+
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:5px;
+    border:1px solid #ccc;
+
+}
+
+
+.checkbox {
+
+    width:auto;
+
+}
+
+
+.package {
+
+    border:2px solid #ddd;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    cursor:pointer;
+
+}
+
+
+.package:hover {
+
+    border-color:#0066cc;
+
+}
+
+
+.package input {
+
+    width:auto;
+
+}
+
+
+.description {
+
+    display:none;
+    background:#f1f8ff;
+    padding:15px;
+    margin-top:10px;
+    border-radius:8px;
+    line-height:2;
+
+}
+
+
+
+button {
+
+    margin-top:25px;
+    width:100%;
+    padding:15px;
+    background:#0066cc;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+
+}
+
+
+
+.result {
+
+    margin-top:25px;
+    background:#eef7ee;
+    padding:20px;
+    border-radius:10px;
+    line-height:2;
+
+}
+
+
+.denaPay {
+
+    background:#fff5e6;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+ماشین حساب قیمت گذاری دناپ
+</h1>
+
+
+<h2>
+اطلاعات قرارداد
+</h2>
+
+
+<label>
+تعداد مدارس
+</label>
+
+<input id="schools" type="number" value="1">
+
+
+
+<label>
+میانگین دانش آموز هر مدرسه
+</label>
+
+<input id="students" type="number" value="150">
+
+
+
+<h2>
+انتخاب پکیج دناپ
+</h2>
+
+
+
+<div class="package" onclick="showPackage('basic')">
+
+<input type="radio" name="package" id="basic">
+
+<b>
+پکیج اقتصادی
+</b>
+
+
+<div id="basicDesc" class="description">
+
+امکانات:
+
+<br>
+
+✔ سامانه مدیریت مدرسه
+
+<br>
+
+✔ ثبت دانش آموز و کادر
+
+<br>
+
+✔ دفتر کلاسی
+
+<br>
+
+✔ حضور و غیاب
+
+<br>
+
+✔ ثبت نمره
+
+<br>
+
+✔ کارنامه
+
+<br>
+
+خدمات:
+
+<br>
+
+✔ آموزش اولیه
+
+<br>
+
+✔ پشتیبانی تیکتی
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="package" onclick="showPackage('standard')">
+
+<input type="radio" name="package" id="standard" checked>
+
+
+<b>
+پکیج استاندارد (پیشنهادی)
+</b>
+
+
+<div id="standardDesc" class="description">
+
+
+امکانات:
+
+<br>
+
+✔ تمام امکانات پکیج اقتصادی
+
+<br>
+
+✔ سامانه مالی کامل
+
+<br>
+
+✔ کلاس آنلاین
+
+<br>
+
+✔ ضبط کلاس
+
+<br>
+
+✔ ذخیره کلاس تا یک ماه
+
+<br>
+
+✔ تکلیف و محتوای آموزشی
+
+
+<br><br>
+
+
+خدمات:
+
+<br>
+
+✔ آموزش مدیران و کاربران
+
+<br>
+
+✔ پشتیبانی تلفنی و تیکتی
+
+<br>
+
+✔ گزارش دوره‌ای استفاده
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="package" onclick="showPackage('enterprise')">
+
+
+<input type="radio" name="package" id="enterprise">
+
+
+<b>
+پکیج سازمانی
+</b>
+
+
+
+<div id="enterpriseDesc" class="description">
+
+
+امکانات:
+
+<br>
+
+✔ تمام امکانات استاندارد
+
+<br>
+
+✔ خدمات اختصاصی سازمانی
+
+<br>
+
+✔ SLA پشتیبانی 30 دقیقه
+
+<br>
+
+✔ کارشناس اختصاصی
+
+<br>
+
+✔ جلسات مدیریتی
+
+<br>
+
+✔ گزارش‌های تحلیلی
+
+
+</div>
+
+
+</div>
+
+
+<h2>
+ماژول‌های سامانه
+</h2>
+
+<input class="checkbox" id="schoolModule" type="checkbox" checked>
+سامانه مدیریت مدرسه
+<div class="description" id="schoolDesc">
+ثبت دانش‌آموز، ثبت کادر، دفتر کلاسی، حضور و غیاب، ثبت نمره، کارنامه، گزارشات
+</div>
+
+<br>
+
+<input class="checkbox" id="finance" type="checkbox">
+سامانه مالی
+<div class="description" id="financeDesc">
+حسابداری، دریافت و پرداخت، شهریه، گزارش‌های مالی، اتصال به سامانه مدرسه
+</div>
+
+<br>
+
+<input class="checkbox" id="denapay" type="checkbox">
+دناپ‌پی (تسهیل‌یار وام)
+<div class="description" id="denapayDesc">
+ثبت درخواست وام، مدیریت فرآیند، پیگیری وضعیت، گزارش‌گیری و اتصال به سامانه مدرسه
+</div>
+
+<br>
+
+<input class="checkbox" id="online" type="checkbox">
+کلاس آنلاین + ذخیره کلاس
+<div class="description" id="onlineDesc">
+کلاس آنلاین BigBlueButton، اشتراک صفحه، ضبط کلاس، ذخیره یک‌ماهه، ورود از دفتر کلاسی
+</div>
+
+<br>
+
+<input class="checkbox" id="lms" type="checkbox">
+تکلیف و محتوای الکترونیکی
+<div class="description" id="lmsDesc">
+تکلیف، محتوای آموزشی، بارگذاری فایل، آزمون، مدیریت محتوای درسی
+</div>
+
+<br>
+
+<input class="checkbox" id="denapay" type="checkbox">
+فعال‌سازی وام دناپ‌پی
+فرمول محاسبه:
+<br>
+به ازای هر دانش‌آموز 500,000 تومان
+
+
+</div>
+
+
+
+
+
+<h2>
+سطح پشتیبانی
+</h2>
+
+
+
+<select id="support">
+
+
+<option value="0">
+
+پایه
+
+</option>
+
+
+<option value="250000000">
+
+استاندارد
+
+</option>
+
+
+<option value="500000000">
+
+ویژه
+
+</option>
+
+
+</select>
+
+
+
+
+
+<label>
+
+حاشیه سود (%)
+
+</label>
+
+
+<input id="profit" type="number" value="30">
+
+
+
+<button onclick="calculate()">
+
+محاسبه قیمت
+
+</button>
+
+
+
+
+<div class="result" id="result">
+
+نتیجه محاسبه اینجا نمایش داده می‌شود
+
+</div>
+
+
+
+</div>
+
+
+
+<script>
+
+
+function showPackage(id){
+
+
+document.querySelectorAll(".description")
+.forEach(
+x=>x.style.display="none"
+);
+
+
+document.getElementById(id+"Desc")
+.style.display="block";
+
+
+document.getElementById(id)
+.checked=true;
+
+
+}
+
+
+
+showPackage("standard");
+
+
+</script>
+<script>
+
+
+function calculate(){
+
+
+let schools =
+Number(document.getElementById("schools").value);
+
+
+let students =
+Number(document.getElementById("students").value);
+
+
+
+let totalStudents = schools * students;
+
+
+
+let cost = 0;
+
+
+
+// هزینه پایه قرارداد
+
+cost += 300000000;
+
+
+
+// هزینه تعداد مدارس
+
+cost += schools * 3000000;
+
+
+
+// هزینه تعداد دانش آموز
+
+cost += totalStudents * 50000;
+
+
+
+
+// انتخاب پکیج
+
+
+let packagePrice = 0;
+
+let packageName = "";
+
+
+
+if(document.getElementById("basic").checked){
+
+
+packagePrice = 700000000;
+
+packageName = "اقتصادی";
+
+
+}
+
+
+
+if(document.getElementById("standard").checked){
+
+
+packagePrice = 1350000000;
+
+packageName = "استاندارد";
+
+
+}
+
+
+
+if(document.getElementById("enterprise").checked){
+
+
+packagePrice = 2000000000;
+
+packageName = "سازمانی";
+
+
+}
+
+
+
+cost += packagePrice;
+
+
+
+
+// ماژول‌های انتخابی
+
+
+
+if(document.getElementById("finance").checked){
+
+cost += 300000000;
+
+}
+
+
+
+if(document.getElementById("online").checked){
+
+cost += 250000000;
+
+}
+
+
+
+if(document.getElementById("lms").checked){
+
+cost += 100000000;
+
+}
+
+
+
+
+// پشتیبانی
+
+
+let support =
+Number(document.getElementById("support").value);
+
+
+cost += support;
+
+
+
+
+
+// وام دناپ پی
+
+
+let denapayPrice = 0;
+
+
+if(document.getElementById("denapay").checked){
+
+
+denapayPrice = totalStudents * 500000;
+
+
+cost += denapayPrice;
+
+
+}
+
+
+
+
+// سود
+
+
+let profit =
+Number(document.getElementById("profit").value);
+
+
+
+let finalPrice =
+cost / (1 - profit / 100);
+
+
+
+
+
+let monthly =
+finalPrice / 12;
+
+
+
+
+document.getElementById("result").innerHTML =
+
+`
+
+<h3>نتیجه پیشنهاد قیمت دناپ</h3>
+
+
+<b>پکیج انتخاب شده:</b>
+
+${packageName}
+
+<br><br>
+
+
+
+<b>تعداد مدارس:</b>
+
+${schools.toLocaleString()}
+
+<br>
+
+
+
+<b>تعداد کل دانش آموز:</b>
+
+${totalStudents.toLocaleString()}
+
+
+<br><br>
+
+
+
+<b>هزینه تمام شده:</b>
+
+${cost.toLocaleString()}
+
+تومان
+
+
+<br><br>
+
+
+
+<b>قیمت پیشنهادی سالانه:</b>
+
+${finalPrice.toLocaleString()}
+
+تومان
+
+
+<br><br>
+
+
+
+<b>قیمت پیشنهادی ماهانه:</b>
+
+${monthly.toLocaleString()}
+
+تومان
+
+
+<br><br>
+
+
+
+<b>هزینه هر مدرسه در سال:</b>
+
+${(finalPrice/schools).toLocaleString()}
+
+تومان
+
+
+<br><br>
+
+
+
+<b>هزینه هر دانش آموز در سال:</b>
+
+${(finalPrice/totalStudents).toLocaleString()}
+
+تومان
+
+
+
+<br><br>
+
+
+
+<b>سرویس وام دناپ‌پی:</b>
+
+${denapayPrice.toLocaleString()}
+
+تومان
+
+
+`;
+
+
+
+}
+
+
+</script>
